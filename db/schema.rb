@@ -21,12 +21,16 @@ ActiveRecord::Schema.define(version: 20180409080501) do
 
   create_table "messages", force: :cascade do |t|
     t.text "content"
-    t.integer "user_id"
-    t.integer "chat_room_id"
+    t.bigint "user_id"
+    t.bigint "chat_room_id"
+    t.index ["chat_room_id"], name: "index_messages_on_chat_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
   end
 
+  add_foreign_key "messages", "chat_rooms"
+  add_foreign_key "messages", "users"
 end

@@ -1,5 +1,5 @@
 class AddChatRoomIdToMessages < ActiveRecord::Migration[5.1]
   def change
-    add_column :messages, :chat_room_id, :integer
+    add_reference :messages, :chat_room, foreign_key: true
   end
 end
